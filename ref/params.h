@@ -2,7 +2,11 @@
 #define PARAMS_H
 
 #ifndef KYBER_K
-#define KYBER_K 3	/* Change this for different security strengths */
+#ifdef KYBER_PINECONE
+#define KYBER_K 2	/* Change this for different security strengths */
+#else
+#define KYBER_K 3
+#endif
 #endif
 
 
