@@ -2,7 +2,6 @@
 #include <stdint.h>
 #include <stdlib.h>
 #ifdef KYBER_PINECONE
-#include <blog.h>
 #include <bl_sec.h>
 #endif
 #include "randombytes.h"
