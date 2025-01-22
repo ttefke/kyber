@@ -1,6 +1,10 @@
 #include <stddef.h>
 #include <stdint.h>
 #include <stdlib.h>
+#ifdef KYBER_PINECONE
+#include <blog.h>
+#include <bl_sec.h>
+#endif
 #include "randombytes.h"
 
 #ifdef _WIN32
@@ -71,6 +75,11 @@ void randombytes(uint8_t *out, size_t outlen) {
   }
 }
 #else
+#ifdef KYBER_PINECONE
+void randombytes(uint8_t *out, size_t outlen) {
+  bl_rand_stream(out, outlen);
+}
+#else
 void randombytes(uint8_t *out, size_t outlen) {
   static int fd = -1;
   ssize_t ret;
@@ -94,4 +103,5 @@ void randombytes(uint8_t *out, size_t outlen) {
     outlen -= ret;
   }
 }
+#endif
 #endif
